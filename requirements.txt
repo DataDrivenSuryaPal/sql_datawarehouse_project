@@ -1,0 +1,450 @@
+# ============================================================
+# MODERN DATA WAREHOUSE PROJECT - REQUIREMENTS
+# ============================================================
+
+# Project Overview
+# ------------------------------------------------------------
+# Project Type    : Modern Data Warehouse
+# Database        : Microsoft SQL Server
+# Architecture   : Medallion / Layered Architecture
+# Load Strategy   : Full Load
+# Extraction      : Full Extraction
+# Source Format   : CSV
+# Source Systems  : CRM and ERP
+# Main Purpose    : Data Integration, Data Modeling & Analytics
+
+
+# ============================================================
+# 1. SOFTWARE & DATABASE REQUIREMENTS
+# ============================================================
+
+Microsoft SQL Server 2019 or higher
+SQL Server Management Studio (SSMS) 19 or higher
+GitHub
+
+
+# ============================================================
+# 2. DATA SOURCE REQUIREMENTS
+# ============================================================
+
+Source data must be available in CSV format.
+
+Source systems:
+- CRM (Customer Relationship Management)
+- ERP (Enterprise Resource Planning)
+
+Typical source datasets include:
+- Customer information
+- Product information
+- Sales transactions
+- Location information
+- Product category information
+
+Expected source characteristics:
+- CSV files
+- Structured tabular data
+- Multiple source systems
+- Different column naming conventions
+- Potential duplicate records
+- Missing values
+- Inconsistent data formats
+- Invalid or unexpected values
+
+
+# ============================================================
+# 3. DATA WAREHOUSE ARCHITECTURE
+# ============================================================
+
+The data warehouse follows a three-layer architecture:
+
+BRONZE LAYER
+-------------
+Purpose:
+- Store raw source data
+- Preserve the original structure of source files
+- Perform minimal transformation
+- Maintain source-level data traceability
+
+Characteristics:
+- Raw data
+- No business transformations
+- Full data ingestion
+- Source-oriented tables
+
+
+SILVER LAYER
+------------
+Purpose:
+- Clean and standardize data
+- Resolve data quality issues
+- Apply technical transformations
+- Prepare data for business modeling
+
+Typical operations:
+- Data cleansing
+- Data type conversion
+- Handling NULL values
+- Duplicate removal
+- Standardization
+- Data validation
+- Column renaming
+- Derived attributes
+- Data consistency checks
+
+
+GOLD LAYER
+----------
+Purpose:
+- Store business-ready data
+- Support reporting and analytics
+- Provide optimized analytical datasets
+
+Characteristics:
+- Business-friendly structure
+- Fact and dimension tables
+- Integrated data
+- Aggregations and KPIs
+- Ready for reporting and analysis
+
+
+# ============================================================
+# 4. ETL REQUIREMENTS
+# ============================================================
+
+ETL Process:
+- Extract
+- Transform
+- Load
+
+EXTRACT
+-------
+- Full extraction from CRM CSV files
+- Full extraction from ERP CSV files
+- Validate source files
+- Load source data into Bronze layer
+- Preserve source data for traceability
+
+
+TRANSFORM
+---------
+- Standardize column names
+- Convert data types
+- Handle missing values
+- Remove duplicate records
+- Validate business keys
+- Standardize date formats
+- Standardize text values
+- Apply business rules
+- Generate derived columns
+- Perform data quality checks
+
+
+LOAD
+----
+- Load cleaned data into Silver layer
+- Integrate data from multiple source systems
+- Load business-ready data into Gold layer
+- Maintain referential integrity
+- Generate surrogate keys where required
+- Support full-load processing
+
+
+# ============================================================
+# 5. SQL / T-SQL REQUIREMENTS
+# ============================================================
+
+The project uses Microsoft SQL Server and T-SQL.
+
+Required SQL concepts:
+- SELECT
+- INSERT
+- UPDATE
+- DELETE
+- CREATE TABLE
+- ALTER TABLE
+- DROP TABLE
+- CREATE VIEW
+- CREATE PROCEDURE
+- CREATE FUNCTION
+- CREATE SCHEMA
+- CREATE DATABASE
+
+Advanced SQL concepts:
+- Common Table Expressions (CTEs)
+- Temporary Tables
+- CASE statements
+- Subqueries
+- Derived Tables
+- Aggregate Functions
+- Window Functions
+- Ranking Functions
+- Date Functions
+- String Functions
+- Conversion Functions
+- NULL handling
+- Conditional logic
+
+
+# ============================================================
+# 6. STORED PROCEDURE REQUIREMENTS
+# ============================================================
+
+Stored procedures are used to automate ETL operations.
+
+Stored procedures should support:
+- Bronze layer loading
+- Silver layer transformation
+- Gold layer loading
+- Data validation
+- Error handling
+- Execution logging
+- Processing time tracking
+- Row count validation
+
+Recommended features:
+- TRY...CATCH error handling
+- Transaction management
+- PRINT / logging messages
+- Execution timestamps
+- Row-count monitoring
+
+
+# ============================================================
+# 7. DATA QUALITY REQUIREMENTS
+# ============================================================
+
+The warehouse should perform data quality checks including:
+
+- NULL value detection
+- Duplicate record detection
+- Invalid date detection
+- Invalid numeric values
+- Invalid business keys
+- Referential integrity validation
+- Unexpected data type validation
+- Source-to-target row count validation
+- Missing source records
+- Invalid category/product relationships
+- Invalid customer relationships
+
+
+# ============================================================
+# 8. DATA MODELING REQUIREMENTS
+# ============================================================
+
+The Gold layer follows a dimensional modeling approach.
+
+Data modeling concepts:
+- Fact Tables
+- Dimension Tables
+- Star Schema
+- Surrogate Keys
+- Business Keys
+- Primary Keys
+- Foreign Keys
+- Referential Integrity
+- Measures
+- Attributes
+- Grain definition
+
+
+DIMENSION TABLES
+----------------
+Examples:
+- Customer Dimension
+- Product Dimension
+- Location Dimension
+- Category Dimension
+- Date Dimension
+
+
+FACT TABLES
+-----------
+Examples:
+- Sales Fact
+
+Fact tables should contain:
+- Foreign keys
+- Transaction-level information
+- Measures
+- Business metrics
+
+
+# ============================================================
+# 9. DATA WAREHOUSE KEYS
+# ============================================================
+
+The project should distinguish between:
+
+Business Keys:
+- Keys originating from source systems
+- Used to identify source records
+
+Surrogate Keys:
+- Warehouse-generated identifiers
+- Used as primary keys in dimension tables
+- Used to establish relationships with fact tables
+
+
+# ============================================================
+# 10. ANALYTICS REQUIREMENTS
+# ============================================================
+
+The Gold layer should support analytical queries such as:
+
+- Total Sales
+- Total Quantity Sold
+- Total Revenue
+- Average Sales
+- Sales by Product
+- Sales by Category
+- Sales by Customer
+- Sales by Location
+- Sales by Date
+- Top-performing Products
+- Top-performing Customers
+- Product Performance
+- Customer Performance
+- Revenue Trends
+- Sales Trends
+
+
+# ============================================================
+# 11. KPI REQUIREMENTS
+# ============================================================
+
+Potential business KPIs include:
+
+- Total Revenue
+- Total Sales
+- Total Orders
+- Total Quantity Sold
+- Average Order Value
+- Average Revenue per Customer
+- Best-Selling Product
+- Best-Selling Category
+- Top Customer
+- Sales Growth
+- Revenue by Region
+- Revenue by Product Category
+
+
+# ============================================================
+# 12. PERFORMANCE REQUIREMENTS
+# ============================================================
+
+The database should be designed with performance in mind.
+
+Recommended practices:
+- Appropriate indexing
+- Primary key constraints
+- Foreign key constraints
+- Efficient joins
+- Avoid unnecessary SELECT *
+- Proper filtering
+- Efficient aggregation
+- Appropriate data types
+- Query optimization
+
+
+# ============================================================
+# 13. DATA VALIDATION REQUIREMENTS
+# ============================================================
+
+Validation should be performed between each layer.
+
+Bronze → Silver:
+- Record count validation
+- Data type validation
+- NULL validation
+- Duplicate validation
+- Data cleansing validation
+
+Silver → Gold:
+- Referential integrity validation
+- Fact/dimension relationship validation
+- Business rule validation
+- KPI validation
+- Aggregation validation
+
+
+# ============================================================
+# 14. ERROR HANDLING & LOGGING
+# ============================================================
+
+The ETL process should include:
+
+- Error handling
+- TRY...CATCH blocks
+- Transaction control
+- Error messages
+- Load timestamps
+- Processing status
+- Source row counts
+- Target row counts
+- Failed-load identification
+
+
+# ============================================================
+# 15. PROJECT DOCUMENTATION REQUIREMENTS
+# ============================================================
+
+Repository documentation should include:
+
+- Project Overview
+- Business Requirements
+- Data Architecture
+- Data Flow
+- Database Structure
+- ETL Process
+- Data Model
+- Naming Conventions
+- Data Quality Rules
+- SQL Scripts
+- Stored Procedures
+- Analytics Queries
+- Project Results
+- Future Improvements
+
+
+# ============================================================
+# 16. VERSION CONTROL REQUIREMENTS
+# ============================================================
+
+
+Repository should contain organized folders for:
+
+- Database Scripts
+- Bronze Layer
+- Silver Layer
+- Gold Layer
+- Stored Procedures
+- Data Quality Checks
+- Analytics
+- Documentation
+- Source Data
+
+
+# ============================================================
+# 17. EXPECTED PROJECT OUTPUT
+# ============================================================
+
+The completed project should provide:
+
+1. A fully configured SQL Server database
+2. Raw data stored in the Bronze layer
+3. Cleaned data stored in the Silver layer
+4. Business-ready data stored in the Gold layer
+5. Dimension tables
+6. Fact tables
+7. Stored procedures for ETL
+8. Data quality validation
+9. Analytical SQL queries
+10. Business KPIs
+11. Documented data architecture
+12. GitHub-ready project structure
+
+
+# ============================================================
+# END OF REQUIREMENTS
+# ============================================================
