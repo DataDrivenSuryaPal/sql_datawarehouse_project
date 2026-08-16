@@ -42,7 +42,7 @@ BEGIN
 			cst_key,
 			cst_firstname,
 			cst_lastname,
-			cst_material_status,
+			cst_marital_status,
 			cst_gndr,
 			cst_create_date
 		)
@@ -51,10 +51,10 @@ BEGIN
 				cst_key,
 				TRIM (cst_firstname) AS cst_firstname, --Removing the leading and trailing spaces from the cst_firstname column
 				TRIM (cst_lastname) AS cst_lastname, --Removing the leading and trailing spaces from the cst_lastname column
-				CASE WHEN UPPER(TRIM(cst_material_status)) = 'M' THEN 'Married' --Standardizing the material status
-					 WHEN UPPER(TRIM(cst_material_status)) = 'S' THEN 'Single'
+				CASE WHEN UPPER(TRIM(cst_marital_status)) = 'M' THEN 'Married' --Standardizing the material status
+					 WHEN UPPER(TRIM(cst_marital_status)) = 'S' THEN 'Single'
 					 ELSE 'n/a'
-				END AS cst_material_status,
+				END AS cst_marital_status,
 				CASE WHEN UPPER(TRIM(cst_gndr)) = 'F' THEN 'Female' --Standardizing the gender
 					WHEN UPPER(TRIM(cst_gndr)) = 'M' THEN 'Male'
 					ELSE 'n/a'
