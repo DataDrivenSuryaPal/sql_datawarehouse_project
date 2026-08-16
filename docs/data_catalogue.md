@@ -35,9 +35,6 @@ Stores customer details enriched with demographic and geographic data.
 | `birthdate` | DATE | The date of birth of the customer, formatted as YYYY-MM-DD. |
 | `create_date` | DATE | The date when the customer record was created in the system. |
 
-### Reference
-
-![gold.dim_customers](assets/dim_customers.png)
 
 ---
 
@@ -63,10 +60,6 @@ Provides information about products and their attributes.
 | `product_line` | NVARCHAR(50) | The specific product line or series to which the product belongs, such as Road or Mountain. |
 | `start_date` | DATE | The date when the product became available for sale or use. |
 
-### Reference
-
-![gold.dim_products](assets/dim_products.png)
-
 ---
 
 # 3. `gold.fact_sales`
@@ -89,6 +82,3 @@ Stores transactional sales data for analytical purposes.
 | `quantity` | INT | The number of units of the product ordered for the line item. |
 | `price` | INT | The price per unit of the product for the line item. |
 
-### Reference
-
-![gold.fact_sales](assets/fact_sales.png)
