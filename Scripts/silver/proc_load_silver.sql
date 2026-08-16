@@ -229,7 +229,7 @@ BEGIN
 	END TRY
 	BEGIN CATCH
 		PRINT '= = = = = = = = = = = = = = = = = = = = = = = = = = = = ='
-		PRINT 'Error occurred while loading Bronze Layer'
+		PRINT 'Error occurred while loading Silver Layer'
 		PRINT 'Error Message: ' + ERROR_MESSAGE();
 		PRINT 'Error Number: ' + CAST(ERROR_NUMBER() AS NVARCHAR(10));
 		PRINT 'Error Severity: ' + CAST(ERROR_SEVERITY() AS NVARCHAR(10));
