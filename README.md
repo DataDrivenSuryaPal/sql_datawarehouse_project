@@ -16,60 +16,8 @@ The primary goal is to build a scalable and maintainable data warehouse while ap
 
 The data warehouse follows a **Medallion Architecture** consisting of three layers:
 
-```text
-                    SOURCE SYSTEMS
-              ┌─────────────────────────┐
-              │                         │
-              │       CRM / ERP         │
-              │      CSV Files          │
-              │                         │
-              └────────────┬────────────┘
-                           │
-                    Full Extraction
-                           │
-                           ▼
-              ┌─────────────────────────┐
-              │      🥉 BRONZE          │
-              │                         │
-              │      Raw Data           │
-              │      As-Is Data        │
-              │                         │
-              │    Full Load            │
-              │  Truncate & Insert      │
-              └────────────┬────────────┘
-                           │
-                           ▼
-              ┌─────────────────────────┐
-              │      🥈 SILVER          │
-              │                         │
-              │ Cleaned & Standardized  │
-              │ Normalized Data         │
-              │ Integrated Data         │
-              │ Derived Columns         │
-              │                         │
-              │    Full Load            │
-              │  Truncate & Insert      │
-              └────────────┬────────────┘
-                           │
-                           ▼
-              ┌─────────────────────────┐
-              │       🥇 GOLD           │
-              │                         │
-              │   Business-Ready Data   │
-              │   Analytical Models     │
-              │   Business Logic        │
-              │                         │
-              │        Views            │
-              └────────────┬────────────┘
-                           │
-                           ▼
-              ┌─────────────────────────┐
-              │       📊 ANALYTICS      │
-              │                         │
-              │  Reports & Dashboards   │
-              │  Business Insights     │
-              └─────────────────────────┘
-```
+<img width="6235" height="3216" alt="data_architecture" src="https://github.com/user-attachments/assets/2a6df06d-d35c-4c4a-9065-6afca2247185" />
+
 
 The project documentation defines Bronze as the raw/unprocessed layer, Silver as the clean and standardized layer, and Gold as the business-ready layer used for reporting and analytics.
 
